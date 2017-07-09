@@ -1,10 +1,12 @@
 ColorEffect color_effect;
 Don don;
 Good good;
+FireWorkEffect fire_work_effect;
 
 void setup(){
   size(1680,450);//6.7cmが450くらい67pixel
   don=new Don();
+  fire_work_effect=new FireWorkEffect();
 }
 
 void draw(){
@@ -29,7 +31,7 @@ void draw(){
     good.display();
   }
   
-  
+  fire_work_effect.display();
   
   don.display();
   
@@ -67,27 +69,4 @@ void drawJudgeMark(){
   noStroke();
   fill(96,93,96);
   ellipse(580,308,60,60);
-}
-
-void drawDon(int x, int y){
-  stroke(0);
-  strokeWeight(5);
-  fill(246);
-  ellipse(x,y,87,87);
-  
-  noStroke();
-  fill(234,61,22);
-  ellipse(x,y,66,66);
-  
-  fill(10,0,0);
-  ellipse(x-18,y-5,16,16);
-  
-  fill(10,0,0);
-  ellipse(x+18,y-5,16,16);
-  
-  stroke(0);
-  strokeWeight(3);
-  noFill();
-  bezier(x,y+10,x+5,y+15,x+10,y+15,x+15,y+10);
-  bezier(x,y+10,x-5,y+15,x-10,y+15,x-15,y+10);
 }
