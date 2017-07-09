@@ -1,5 +1,6 @@
 ColorEffect color_effect;
 Don don;
+Good good;
 
 void setup(){
   size(1680,450);//6.7cmが450くらい67pixel
@@ -12,22 +13,26 @@ void draw(){
   drawBar();
   drawJudgeMark();
   
-  if(don.current_x<580 && color_effect==null){
-    color_effect=new ColorEffect();
+  if(580>don.current_x){
+    don.hit();
+    if(color_effect==null){
+      color_effect=new ColorEffect();
+      good=new Good();
+    }
   }
 
   if(color_effect!=null){
     color_effect.display();
   }
   
-  if(580>don.current_x){
-    don.hit();
+  if(good!=null){
+    good.display();
   }
+  
+  
   
   don.display();
   
-  background(200);
-  ellipse(1430,90,87,87);
 }
 
 void drawBar(){

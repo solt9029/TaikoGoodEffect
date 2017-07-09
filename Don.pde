@@ -20,26 +20,27 @@ class Don {
     this.start_time=System.currentTimeMillis();
     
     //キャプチャ動画から以下のミリ秒ごとにdonの座標をとりました
+    //ellipse(1430,90,87,87);→最終的にこの座標にたどり着けばいい
     movement_pos[0][0]=580;
     movement_pos[0][1]=308;
-    movement_pos[29][0]=624;
-    movement_pos[29][1]=272;
-    movement_pos[59][0]=714;
-    movement_pos[59][1]=210;
-    movement_pos[99][0]=803;
-    movement_pos[99][1]=155;
-    movement_pos[129][0]=884;
-    movement_pos[129][1]=123;
-    movement_pos[159][0]=958;
-    movement_pos[159][1]=105;
-    movement_pos[199][0]=1022;
-    movement_pos[199][1]=102;
-    movement_pos[229][0]=1078;
-    movement_pos[229][1]=111;
-    movement_pos[269][0]=1118;
-    movement_pos[269][1]=121;
-    movement_pos[299][0]=1162;
-    movement_pos[299][1]=135;
+    movement_pos[29][0]=movement_pos[0][0]+int(850*(float)44/582);//44
+    movement_pos[29][1]=movement_pos[0][1]-int(218*(float)36/173);//-36
+    movement_pos[59][0]=movement_pos[29][0]+int(850*(float)90/582);//90
+    movement_pos[59][1]=movement_pos[29][1]-int(218*(float)62/173);//-62
+    movement_pos[99][0]=movement_pos[59][0]+int(850*(float)89/582);//89
+    movement_pos[99][1]=movement_pos[59][1]-int(218*(float)55/173);//-55
+    movement_pos[129][0]=movement_pos[99][0]+int(850*(float)81/582);//81
+    movement_pos[129][1]=movement_pos[99][1]-int(218*(float)32/173);//-32
+    movement_pos[159][0]=movement_pos[129][0]+int(850*(float)74/582);//74
+    movement_pos[159][1]=movement_pos[129][1]-int(218*(float)18/173);//-18
+    movement_pos[199][0]=movement_pos[159][0]+int(850*(float)64/582);//64
+    movement_pos[199][1]=movement_pos[159][1]-int(218*(float)3/173);//-3
+    movement_pos[229][0]=movement_pos[199][0]+int(850*(float)56/582);//56
+    movement_pos[229][1]=movement_pos[199][1]+int(218*(float)9/173);//+9
+    movement_pos[269][0]=movement_pos[229][0]+int(850*(float)40/582);//40
+    movement_pos[269][1]=movement_pos[229][1]+int(218*(float)11/173);//+11
+    movement_pos[299][0]=movement_pos[269][0]+int(850*(float)44/582);//44
+    movement_pos[299][1]=movement_pos[269][1]+int(218*(float)14/173);;//+14
     
     for(int i=1,s=0,e=29; i<e-s; i++){
       int sx=movement_pos[s][0];
@@ -133,14 +134,15 @@ class Don {
     long current_time=System.currentTimeMillis();
 
     if (!this.is_hit) {
-      this.current_x=int(this.start_x-(current_time-this.start_time)/3);
+      this.current_x=int(this.start_x-(current_time-this.start_time)/2);
     } else {
       if (current_time<movement_start_time+movement_time) {
         //動くcurrent_time-movement_start_timeで経過ミリ秒数が取れるよ
-        //this.current_x+=10;
-        //this.current_y-=10;
         this.current_x=int(this.movement_pos[int(current_time-movement_start_time)][0]);
         this.current_y=int(this.movement_pos[int(current_time-movement_start_time)][1]);
+      }else if(this.current_x<this.movement_pos[299][0]){
+        this.current_x=this.movement_pos[299][0];
+        this.current_y=this.movement_pos[299][1];
       }
     }
 
