@@ -1,22 +1,33 @@
-int don_x=1680;
-int don_y=308;
-
-boolean is_hit=false;
-
+ColorEffect color_effect;
+Don don;
 
 void setup(){
   size(1680,450);//6.7cmが450くらい67pixel
+  don=new Don();
 }
 
 void draw(){
   background(255);
   
-  don_x-=3;
-  
   drawBar();
   drawJudgeMark();
   
-  drawDon(don_x,don_y);
+  if(don.current_x<580 && color_effect==null){
+    color_effect=new ColorEffect();
+  }
+
+  if(color_effect!=null){
+    color_effect.display();
+  }
+  
+  if(580>don.current_x){
+    don.hit();
+  }
+  
+  don.display();
+  
+  background(200);
+  ellipse(1430,90,87,87);
 }
 
 void drawBar(){
@@ -51,8 +62,6 @@ void drawJudgeMark(){
   noStroke();
   fill(96,93,96);
   ellipse(580,308,60,60);
-  
-  
 }
 
 void drawDon(int x, int y){
