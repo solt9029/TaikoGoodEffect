@@ -15,6 +15,10 @@ class Don {
   int movement_time=300;
   
   int [][] movement_pos=new int [300][2];
+  
+  //最終地点に到着してから200ミリ秒で消える
+  
+  float alpha=255;
 
   Don() {
     this.start_time=System.currentTimeMillis();
@@ -144,24 +148,34 @@ class Don {
         this.current_x=this.movement_pos[299][0];
         this.current_y=this.movement_pos[299][1];
       }
+      
+      //300ミリ秒経過後は動きが終わってるから、ここからフェードアウトに入る
+      if(current_time>this.movement_start_time+300){
+        this.alpha=255-(current_time-this.movement_start_time-300)*255.0/200;
+      }
+      //フェードアウト開始から200ミリ秒たったら完全に消える
+      if(current_time>this.movement_start_time+500){
+        this.alpha=0;
+      }
+      
     }
 
-    stroke(0);
+    stroke(0,this.alpha);
     strokeWeight(5);
-    fill(246);
+    fill(246,this.alpha);
     ellipse(this.current_x, this.current_y, 87, 87);
 
     noStroke();
-    fill(234, 61, 22);
+    fill(234, 61, 22,this.alpha);
     ellipse(this.current_x, this.current_y, 66, 66);
 
-    fill(10, 0, 0);
+    fill(10, 0, 0,this.alpha);
     ellipse(this.current_x-18, this.current_y-5, 16, 16);
 
-    fill(10, 0, 0);
+    fill(10, 0, 0,this.alpha);
     ellipse(this.current_x+18, this.current_y-5, 16, 16);
 
-    stroke(0);
+    stroke(0,this.alpha);
     strokeWeight(3);
     noFill();
     bezier(this.current_x, this.current_y+10, this.current_x+5, this.current_y+15, this.current_x+10, this.current_y+15, this.current_x+15, this.current_y+10);

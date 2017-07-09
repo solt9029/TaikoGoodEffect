@@ -6,7 +6,6 @@ FireWorkEffect fire_work_effect;
 void setup(){
   size(1680,450);//6.7cmが450くらい67pixel
   don=new Don();
-  fire_work_effect=new FireWorkEffect();
 }
 
 void draw(){
@@ -20,6 +19,7 @@ void draw(){
     if(color_effect==null){
       color_effect=new ColorEffect();
       good=new Good();
+      fire_work_effect=new FireWorkEffect();
     }
   }
 
@@ -31,7 +31,9 @@ void draw(){
     good.display();
   }
   
-  fire_work_effect.display();
+  if(fire_work_effect!=null){
+    fire_work_effect.display();
+  }
   
   don.display();
   
