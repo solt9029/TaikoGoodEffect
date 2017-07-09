@@ -1,10 +1,23 @@
+//3-4-24塩出研史 <http://solt9029.com>
+//太鼓の達人のアニメーションのパラメータを測定し忠実に再現するプログラム
+/*
+
+
+
+*/
+
+import ddf.minim.*;
+
 ColorEffect color_effect;
 Don don;
 Good good;
 FireWorkEffect fire_work_effect;
 
+Minim minim;
+
 void setup(){
-  size(1680,450);//6.7cmが450くらい67pixel
+  minim=new Minim(this);
+  size(1680,450);
   don=new Don();
 }
 
@@ -14,7 +27,7 @@ void draw(){
   drawBar();
   drawJudgeMark();
   
-  if(580>don.current_x){
+  if(580>don.current_x && don.is_hit==false){
     don.hit();
     if(color_effect==null){
       color_effect=new ColorEffect();

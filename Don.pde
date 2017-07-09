@@ -1,4 +1,6 @@
 class Don {
+  AudioSample audio;
+  
   int start_x=1680;
   int start_y=308;
 
@@ -22,6 +24,8 @@ class Don {
 
   Don() {
     this.start_time=System.currentTimeMillis();
+    
+    this.audio=minim.loadSample("dong.wav");
     
     //キャプチャ動画から以下のミリ秒ごとにdonの座標をとりました
     //ellipse(1430,90,87,87);→最終的にこの座標にたどり着けばいい
@@ -132,6 +136,7 @@ class Don {
   void hit() {
     this.is_hit=true;
     this.movement_start_time=System.currentTimeMillis();
+    this.audio.trigger();
   }
 
   void display() {
