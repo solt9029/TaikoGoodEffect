@@ -10,10 +10,14 @@ FireWorkEffect fire_work_effect;
 
 Minim minim;
 
+long start_time;
+
 void setup(){
   minim=new Minim(this);
   size(1680,450);
   don=new Don();
+  
+  start_time=System.currentTimeMillis();
 }
 
 void draw(){
@@ -23,14 +27,14 @@ void draw(){
   drawJudgeMark();
   
   //自動的にどんが飛んでいくようにする
-  //if(580>don.current_x && don.is_hit==false){
-  //  don.hit();
-  //  if(color_effect==null){
-  //    color_effect=new ColorEffect();
-  //    good=new Good();
-  //    fire_work_effect=new FireWorkEffect();
-  //  }
-  //}
+  if(580>don.current_x && don.is_hit==false){
+    don.hit();
+    if(color_effect==null){
+      color_effect=new ColorEffect();
+      good=new Good();
+      fire_work_effect=new FireWorkEffect();
+    }
+  }
 
   if(color_effect!=null){
     color_effect.display();
@@ -45,6 +49,8 @@ void draw(){
   }
   
   don.display();
+  
+  save("./capture/"+(System.currentTimeMillis()-start_time)+".jpg");
   
 }
 
