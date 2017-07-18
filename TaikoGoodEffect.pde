@@ -1,10 +1,5 @@
 //3-4-24塩出研史 <http://solt9029.com>
 //太鼓の達人のアニメーションのパラメータを測定し忠実に再現するプログラム
-/*
-
-
-
-*/
 
 import ddf.minim.*;
 
@@ -27,14 +22,15 @@ void draw(){
   drawBar();
   drawJudgeMark();
   
-  if(580>don.current_x && don.is_hit==false){
-    don.hit();
-    if(color_effect==null){
-      color_effect=new ColorEffect();
-      good=new Good();
-      fire_work_effect=new FireWorkEffect();
-    }
-  }
+  //自動的にどんが飛んでいくようにする
+  //if(580>don.current_x && don.is_hit==false){
+  //  don.hit();
+  //  if(color_effect==null){
+  //    color_effect=new ColorEffect();
+  //    good=new Good();
+  //    fire_work_effect=new FireWorkEffect();
+  //  }
+  //}
 
   if(color_effect!=null){
     color_effect.display();
@@ -84,4 +80,19 @@ void drawJudgeMark(){
   noStroke();
   fill(96,93,96);
   ellipse(580,308,60,60);
+}
+
+void keyPressed(){
+  if(don.current_x>560 && don.current_x<600 && don.is_hit==false){
+    don.hit();
+    if(color_effect==null){
+      color_effect=new ColorEffect();
+    }
+    if(good==null){
+      good=new Good();
+    }
+    if(fire_work_effect==null){
+      fire_work_effect=new FireWorkEffect();
+    }
+  }
 }
