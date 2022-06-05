@@ -1,10 +1,10 @@
 class FireWorkEffect {
   long start_time=0;
-  int start_size=32;
-  int current_size=32;//円の部分は除いて、台形っぽい部分だけ
-  int end_size=60;
-  int x=580;
-  int y=308;
+  int start_size=100;
+  int current_size=100;//円の部分は除いて、台形っぽい部分だけ
+  int end_size=150;
+  int x=350;
+  int y=350;
 
   //寿命140ミリ秒
 
@@ -15,9 +15,9 @@ class FireWorkEffect {
   void display() {
     long current_time=System.currentTimeMillis();
     
-    if(current_time>this.start_time+140)return;
+    if(current_time>this.start_time+600)return;
     
-    this.current_size=this.start_size+(this.end_size-this.start_size)*int(current_time-this.start_time)/140;
+    this.current_size=this.start_size+(this.end_size-this.start_size)*int(current_time-this.start_time)/600;
     
     pushMatrix();
     translate(this.x, this.y);
@@ -25,7 +25,7 @@ class FireWorkEffect {
       pushMatrix();
       rotate(radians(d));
 
-      translate(0, 42);//判定部分に被らないようにする
+      translate(0, 80);//判定部分に被らないようにする
 
       color c1=color(255, 255, 0, 150+(this.end_size-this.current_size)*3);
       color c2=color(255, 70, 0, 50+(this.end_size-this.current_size)*3);
@@ -43,13 +43,13 @@ class FireWorkEffect {
       }
       
       fill(255,60,0,40+(this.end_size-this.current_size)*3);
-      ellipse(0,this.current_size+6,this.current_size/5,this.current_size/5);
+      ellipse(0,this.current_size+6*3,this.current_size/5,this.current_size/5);
       
       fill(255,50,0,35+(this.end_size-this.current_size)*3);
-      ellipse(0,this.current_size+15,this.current_size*3/10,this.current_size*3/10);
+      ellipse(0,this.current_size+15*3,this.current_size*3/10,this.current_size*3/10);
       
       fill(255,40,0,30+(this.end_size-this.current_size)*3);
-      ellipse(0, this.current_size+27, this.current_size*2/5, this.current_size*2/5);
+      ellipse(0, this.current_size+27*3, this.current_size*2/5, this.current_size*2/5);
       
       popMatrix();
     }

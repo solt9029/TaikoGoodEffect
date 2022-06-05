@@ -1,10 +1,10 @@
 class Good{
-  int start_x=547;
-  int start_y=215;
-  int current_x=547;
-  int current_y=215;
-  int end_x=547;
-  int end_y=145;
+  int start_x=318;
+  int start_y=300;
+  int current_x=318;
+  int current_y=300;
+  int end_x=318;
+  int end_y=270;
   int speed=10;
   PImage image;
   
@@ -31,7 +31,7 @@ class Good{
     }
     
     tint(255,255,255,this.alpha);
-    image(this.image,this.current_x,this.current_y);
+    image(this.image,this.current_x,this.current_y, 200, 200);
   }
   
 }
